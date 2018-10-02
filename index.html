@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS quiz</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="title">
+                <h1>General test</h1>
+            </div>
+            <div v-if="!testIsRunning" class="testItem">
+                <button @click="startTest">Start Test</button>
+            </div>
+            <div v-else class="testItem">
+                <div class="subtitle">
+                    <h2>{{ test.title }}</h2>
+                </div>
+                <div class="question">{{ currentQuestionText }}</div>
+                <div class="answers">
+                    <div class="answer" v-for="answer in currentQuestionAnswers" @click="chooseAnswer(answer)">
+                        {{ answer }}
+                    </div>
+                </div>
+                <div class="controls item">
+                    <button @click="prev" :disabled="prevDisabled">Previous</button>
+                    <button @click="next" :disabled="nextDisabled">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+.container {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.testItem {
+    min-height: 400px;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+.question {
+    min-height: 50px;
+    background: rosybrown;
+    margin-bottom: 20px;
+}
+.answer {
+    min-height: 50px;
+    border: 1px solid olivedrab;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.answer:hover {
+    cursor: pointer;
+}
