@@ -23,7 +23,10 @@
                 </div>
                 <div class="question">{{ currentQuestionText }}</div>
                 <div class="answers">
-                    <div class="answer" v-for="answer in currentQuestionAnswers" @click="chooseAnswer(answer)">
+                    <div class="answer" 
+                        :class="{answerSelected: answerSelected}"
+                        v-for="answer in currentQuestionAnswers" 
+                        @click="chooseAnswer(answer)">
                         {{ answer }}
                     </div>
                 </div>
