@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VueJS quiz</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js"></script>
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -24,15 +24,15 @@
                 <div class="question">{{ currentQuestionText }}</div>
                 <div class="answers">
                     <div class="answer" 
-                        :class="{answerSelected: answerSelected}"
+                        :class="{highlight: selected === answer || answer === getUserResponseForCurrentQuestion()}"
                         v-for="answer in currentQuestionAnswers" 
-                        @click="chooseAnswer(answer)">
+                        @click="selected = chooseAnswer(answer)">
                         {{ answer }}
                     </div>
                 </div>
                 <div class="controls item">
-                    <button @click="prev" :disabled="prevDisabled">Previous</button>
-                    <button @click="next" :disabled="nextDisabled">Next</button>
+                    <button @click="prev"  :disabled="prevDisabled">Previous</button>
+                    <button @click="next"  :disabled="nextDisabled">Next</button>
                 </div>
             </div>
         </div>
