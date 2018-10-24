@@ -26,6 +26,9 @@
 .answer:hover {
     cursor: pointer;
 }
-.answerSelected {
-    background: yellowgreen;
+.highlight {
+    background: yellow;
+}
+.hightlightTrue {
+    background: greenyellow;
 }
