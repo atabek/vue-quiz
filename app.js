@@ -40,8 +40,10 @@ new Vue({
         index: 0,
         testSize: 0,
         nextDisabled: false,
+        checkDisabled: false,
         prevDisabled: true,
-        responses: null
+        responses: [],
+        selected: null,
     },
     methods: {
         startTest: function () {
@@ -59,25 +61,34 @@ new Vue({
             this.prevDisabled = this.index > 0 ? false : true;
             if (!this.prevDisabled) { this.nextDisabled = false; }
         },
-        getCurrentQuestion: function() { return this.test.questions[this.index]; },
+        getCurrentQuestion: function() { return this.test.questions[this.currentIndex()]; },
         getRightAnswerForCurrentQuestion: function() {
-            let currentQuestion = this.test.questions[this.index];
+            let currentQuestion = this.test.questions[this.currentIndex()];
             return currentQuestion.answers[0];
         },
         chooseAnswer: function(answer) {
-            console.log(answer, " selected");
             let rightAnswer = this.getRightAnswerForCurrentQuestion();
+            let index = this.currentIndex();
+            if (this.responses[index]) {
+                console.log(this.responses[index][index])
+            }
+            let newResponse = {};
+            newResponse[index] = answer;
             if (rightAnswer === answer) {
-                this.responses[this.index] = true;
-                console.log("Right answer selected");
+                this.responses[index] = newResponse;
                 console.log(this.responses);
             } else {
-                this.responses[this.index] = false;
+                this.responses[index] = newResponse;
                 console.log(this.responses);
             }
+            return answer;
         },
-        answerSelected: function() {
-            return true;
+        currentIndex: function() {
+            return this.index;
+        },
+        getUserResponseForCurrentQuestion: function() {
+            let index = this.currentIndex();
+            return this.responses[index] ? this.responses[index][index] : null;
         }
     },
     computed: {
@@ -86,6 +97,6 @@ new Vue({
             const answers = Object.assign([], this.getCurrentQuestion().answers);
             const randomizedAnswers = answers.sort(function() { return 0.5 - Math.random() });
             return randomizedAnswers;
-        }
+        },
     }
 });
